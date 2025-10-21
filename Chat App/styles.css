@@ -1,0 +1,221 @@
+:root {
+    --bg: #0b0c10;
+    --panel: #11131a;
+    --card: #151824;
+    --text: #e7e9ee;
+    --muted: #aab0c0;
+    --brand: #7c5cff;
+    --accent: #4ad295;
+    --error: #ff5c7c;
+    --ring: rgba(124, 92, 255, .55);
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    --radius: 14px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
+    color: var(--text);
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(124, 92, 255, .08), transparent 57%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(74, 210, 149, .06), transparent 55%),
+        #0b0c10;
+}
+
+.container {
+    max-width: 900px;
+    margin-inline: auto;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    backdrop-filter: blur(6px);
+    background: linear-gradient(to bottom, rgba(11, 12, 16, .85), rgba(11, 12, 16, .55));
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.app-title {
+    margin: 8px 0;
+    font-weight: 800;
+    letter-spacing: .3px;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-block: 20px;
+    box-shadow: var(--shadow);
+}
+
+.feed {
+    height: 56vh;
+    min-height: 300px;
+    overflow: auto;
+    background: var(--card);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 12px;
+    padding: 14px;
+    display: grid;
+    gap: 10px;
+}
+
+.msg {
+    max-width: 76%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    background: #1a1f2f;
+    border: 1px solid rgba(255, 255, 255, .08);
+}
+
+.msg.you {
+    margin-left: auto;
+    background: linear-gradient(180deg, var(--brand), #5a3bff);
+    border-color: rgba(255, 255, 255, .2);
+    color: #fff;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.author {
+    font-weight: 700;
+    color: #d7ceff;
+}
+
+.meta .time {
+    opacity: .8;
+}
+
+.chat-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+input[type="text"] {
+    padding: 11px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    background: #0f1118;
+    color: var(--text);
+    outline: none;
+}
+
+input[type="text"]:focus,
+.btn:focus {
+    box-shadow: 0 0 0 4px var(--ring);
+}
+
+.btn {
+    border: 1px solid transparent;
+    background: linear-gradient(180deg, var(--brand), #5a3bff);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn.ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, .2);
+    color: var(--text);
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status {
+    color: var(--muted);
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, .25);
+}
+
+.dot.offline {
+    background: #7a2234;
+}
+
+.dot.online {
+    background: #2a9d63;
+}
+
+.alert {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: rgba(255, 92, 124, .12);
+    border: 1px solid rgba(255, 92, 124, .35);
+    color: #ffd5de;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.info ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.site-footer {
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Accessibility helper */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 620px) {
+    .msg {
+        max-width: 88%;
+    }
+}

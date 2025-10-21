@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Blog — Fetch API + DOM + Form</title>
+    <meta name="description"
+        content="A tiny blog that fetches posts via Fetch API, renders them with DOM manipulation, and lets you add client-side posts." />
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="app-title">📝 Simple Blog</h1>
+            <div class="actions">
+                <button id="refreshBtn" type="button" class="btn">Refresh posts</button>
+                <a class="btn ghost" href="https://jsonplaceholder.typicode.com/guide/" target="_blank"
+                    rel="noreferrer noopener">JSONPlaceholder</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <h2>Add a new post</h2>
+            <p class="subtle">Client-side only: the post is added to the page (and saved to <code>localStorage</code>),
+                no real backend.</p>
+            <form id="postForm" novalidate>
+                <div class="form-row">
+                    <label for="title">Title <span aria-hidden="true" class="req">*</span></label>
+                    <input id="title" name="title" type="text" required maxlength="120"
+                        placeholder="e.g. My first client-side post" />
+                    <p class="field-hint" id="titleHint">Max 120 characters.</p>
+                </div>
+                <div class="form-row">
+                    <label for="body">Body <span aria-hidden="true" class="req">*</span></label>
+                    <textarea id="body" name="body" rows="5" required placeholder="Write something nice…"></textarea>
+                </div>
+                <div class="form-row inline">
+                    <label for="author">Author</label>
+                    <input id="author" name="author" type="text" maxlength="60" placeholder="You" />
+                    <button class="btn" type="submit">Add post</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <h2>Latest posts</h2>
+                <div class="panel-controls">
+                    <input id="search" type="search" placeholder="Filter by title…"
+                        aria-label="Filter posts by title" />
+                </div>
+            </div>
+
+            <div id="status" class="sr-only" aria-live="polite"></div>
+
+            <div id="error" class="alert hidden" role="alert">
+                <div>
+                    <strong>Couldn’t load posts.</strong>
+                    <span id="errorMsg"></span>
+                </div>
+                <button id="retryBtn" class="btn small" type="button">Try again</button>
+            </div>
+
+            <div id="posts" class="grid" aria-busy="true" aria-describedby="loadingText">
+                <!-- Cards go here -->
+            </div>
+
+            <p id="loadingText" class="loading-text">Loading posts…</p>
+        </section>
+    </main>
+
+    <template id="postCardTmpl">
+        <article class="card">
+            <header class="card-head">
+                <h3 class="card-title"></h3>
+                <div class="card-meta">
+                    <span class="author"></span>
+                    <span class="badge source"></span>
+                </div>
+            </header>
+            <p class="card-body"></p>
+            <footer class="card-foot">
+                <button class="btn small ghost remove-btn" type="button"
+                    title="Remove this post (client-side)">Remove</button>
+            </footer>
+        </article>
+    </template>
+
+    <footer class="site-footer container">
+        <p>Built with vanilla JS, Fetch API, and DOM manipulation. © 2025</p>
+    </footer>
+
+    <script src="./app.js" defer></script>
+</body>
+
+</html>

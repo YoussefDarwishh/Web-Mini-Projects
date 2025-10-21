@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tiny Realtime Chat — WebSockets + async/await</title>
+    <meta name="description" content="A simple realtime chat using WebSockets, promises, and async/await." />
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container row">
+            <h1 class="app-title">💬 Tiny Realtime Chat</h1>
+            <div class="controls">
+                <span id="statusDot" class="dot offline" aria-hidden="true"></span>
+                <span id="statusText" class="status">Disconnected</span>
+                <button id="connectBtn" class="btn">Connect</button>
+                <button id="disconnectBtn" class="btn ghost" disabled>Disconnect</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <div id="feed" class="feed" aria-live="polite" aria-busy="false">
+                <!-- messages appear here -->
+            </div>
+
+            <form id="chatForm" class="chat-form" autocomplete="off">
+                <label class="sr-only" for="message">Message</label>
+                <input id="message" name="message" type="text" placeholder="Type a message and press Enter…" required />
+                <button class="btn" type="submit">Send</button>
+            </form>
+
+            <div id="error" class="alert hidden" role="alert">
+                <strong>Oops:</strong> <span id="errorMsg"></span>
+            </div>
+        </section>
+
+        <section class="panel info">
+            <h2>How this meets the requirements</h2>
+            <ul>
+                <li><strong>API:</strong> Uses a public WebSocket echo server (<code>wss://echo.websocket.events</code>)
+                    to send/receive asynchronously.</li>
+                <li><strong>Async:</strong> Connection & sending are wrapped in <code>promises</code>; orchestrated with
+                    <code>async/await</code>.</li>
+                <li><strong>Real-time:</strong> Incoming messages stream into the live feed instantly via the socket
+                    <code>message</code> event.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="site-footer container">
+        <p>Vanilla JS • WebSockets • Promises • async/await • © 2025</p>
+    </footer>
+
+    <script src="./app.js" defer></script>
+</body>
+
+</html>

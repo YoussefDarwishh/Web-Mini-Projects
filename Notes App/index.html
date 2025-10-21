@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Notes — localStorage + functions + DOM</title>
+    <meta name="description"
+        content="A simple notes app with add, edit, delete, and persistence via localStorage/sessionStorage." />
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-row">
+            <h1 class="app-title">🗒️ Simple Notes</h1>
+
+            <div class="controls">
+                <label for="storeSelect">Storage:</label>
+                <select id="storeSelect" class="select">
+                    <option value="local">localStorage (persists across tabs & restarts)</option>
+                    <option value="session">sessionStorage (clears on tab close)</option>
+                </select>
+                <button id="newDemoBtn" class="btn ghost" type="button">Add demo note</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <h2>Add a note</h2>
+            <form id="noteForm" class="note-form" autocomplete="off" novalidate>
+                <div class="row">
+                    <label class="sr-only" for="title">Title</label>
+                    <input id="title" name="title" type="text" placeholder="Title" maxlength="120" required />
+                </div>
+                <div class="row">
+                    <label class="sr-only" for="body">Body</label>
+                    <textarea id="body" name="body" rows="4" placeholder="Write your note…" required></textarea>
+                </div>
+                <div class="row actions">
+                    <button class="btn" type="submit">Add note</button>
+                </div>
+            </form>
+            <p id="status" class="status subtle" aria-live="polite"></p>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <h2>Your notes</h2>
+                <div class="panel-controls">
+                    <input id="search" type="search" placeholder="Filter by title…"
+                        aria-label="Filter notes by title" />
+                    <button id="clearAllBtn" class="btn ghost small" type="button">Clear all (current storage)</button>
+                </div>
+            </div>
+
+            <div id="notes" class="grid">
+                <!-- Note cards get rendered here -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer container">
+        <p>Vanilla JS • localStorage/sessionStorage • DOM manipulation • © 2025</p>
+    </footer>
+
+    <script src="./app.js" defer></script>
+</body>
+
+</html>
